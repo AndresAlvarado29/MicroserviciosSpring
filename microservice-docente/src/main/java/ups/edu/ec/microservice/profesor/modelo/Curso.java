@@ -11,7 +11,7 @@ public class Curso {
     private String nombre;
     private int numeroDeHoras;
     @ManyToOne
-    @JoinColumn(name = "docente_id")
+    @JoinColumn(name = "profesor_cedula")
     private Profesor profesor;
 
     public Curso() {

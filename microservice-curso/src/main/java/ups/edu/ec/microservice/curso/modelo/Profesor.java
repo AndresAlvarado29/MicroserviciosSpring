@@ -1,30 +1,31 @@
-package ups.edu.ec.microservice.estudiante.modelo;
+package ups.edu.ec.microservice.curso.modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
-@Table(name="Cliente")
-public class Cliente {
+@Table(name="Profesor")
+public class Profesor {
     @Id
-    @Column(name="cli_cedula")
+    @Column(name="pro_cedula")
     private String cedula;
-    @Column(name="cli_nombre")
+    @Column(name="pro_nombre")
     private String nombre;
-    @Column(name="cli_apellido")
+    @Column(name="pro_apellido")
     private String apellido;
-    @Column(name="cli_correo")
+    @Column(name="pro_correo")
     private String correo;
-    @Column(name="cli_contrasena")
+    @Column(name="pro_contrasena")
     private String contrasena;
-    @Column(name="cli_celular")
+    @Column(name="pro_celular")
     private String celular;
-    @Column(name="cli_direccion")
+    @Column(name="pro_direccion")
     private String direccion;
-    private Long idCurso;
-    public Cliente(String cedula, String nombre, String apellido, String correo, String contrasena, String celular, String direccion) {
+    @OneToMany(mappedBy = "profesor")
+    private List<Curso> cursos;
+
+    public Profesor(String cedula, String nombre, String apellido, String correo, String contrasena, String celular, String direccion) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -34,18 +35,7 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public Cliente(String cedula, String nombre, String apellido, String correo, String contrasena, String celular, String direccion, Long idCurso) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.contrasena = contrasena;
-        this.celular = celular;
-        this.direccion = direccion;
-        this.idCurso = idCurso;
-    }
-
-    public Cliente() {
+    public Profesor() {
 
     }
 

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ups.edu.ec.microservice.curso.dto.EstudianteDTO;
+import ups.edu.ec.microservice.curso.dto.ProfesorDTO;
 import ups.edu.ec.microservice.curso.modelo.Curso;
 import ups.edu.ec.microservice.curso.servicio.CursoServicio;
 
@@ -22,7 +24,7 @@ public class CursoControlador {
         Curso c= cursoServicio.create(curso);
 
         try{
-            return ResponseEntity.created(new URI("/MS2/Curso/guardar"+c.getId())).body(c);
+            return ResponseEntity.created(new URI("/microservice/curso/guardar"+c.getId())).body(c);
         }
         catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -34,4 +36,17 @@ public class CursoControlador {
     public ResponseEntity<List<Curso>> listAll(){
         return ResponseEntity.ok(cursoServicio.listCurso());
     }
+
+   /* @GetMapping("/buscar")
+    public ResponseEntity<List<EstudianteDTO>> getAll(){
+        return new ResponseEntity<>(cursoServicio.getUsers(),HttpStatus.OK);
+    }*/
+
+    @GetMapping("/buscarPro/{cedula}")
+    public ProfesorDTO save(@PathVariable String cedula){
+        return cursoServicio.obtenerProfesor(cedula);
+    }
+
+    @GetMapping("/buscarEst/{cedula}")
+    public EstudianteDTO saveE(@PathVariable String cedula){return cursoServicio.obtenerEstudiante(cedula);}
 }

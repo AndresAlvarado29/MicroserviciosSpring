@@ -1,6 +1,7 @@
 package ups.edu.ec.microservice.curso.modelo;
 
 import jakarta.persistence.*;
+import ups.edu.ec.microservice.curso.dto.ProfesorDTO;
 
 @Entity
 @Table(name = "Curso")
@@ -10,14 +11,18 @@ public class Curso {
     private int id;
     private String nombre;
     private int numeroDeHoras;
+    @ManyToOne
+    @JoinColumn(name = "profesor_cedula")
+    private Profesor profesor;
 
     public Curso() {
     }
 
-    public Curso(int id, String nombre, int numeroDeHoras) {
+    public Curso(int id, String nombre, int numeroDeHoras, Profesor profesor) {
         this.id = id;
         this.nombre = nombre;
         this.numeroDeHoras = numeroDeHoras;
+        this.profesor = profesor;
     }
 
     public int getId() {
@@ -44,5 +49,11 @@ public class Curso {
         this.numeroDeHoras = numeroDeHoras;
     }
 
+    public Profesor getProfesor() {
+        return profesor;
+    }
 
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
 }

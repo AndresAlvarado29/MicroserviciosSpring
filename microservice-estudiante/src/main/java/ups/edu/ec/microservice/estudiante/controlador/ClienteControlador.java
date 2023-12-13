@@ -4,28 +4,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ups.edu.ec.microservice.estudiante.modelo.Cliente;
 import ups.edu.ec.microservice.estudiante.servicio.ClienteServicio;
 
 import java.net.URI;
 import java.util.List;
 @RestController
-@RequestMapping("/microservice/cliente")
+@RequestMapping("/ms/estudiante")
 public class ClienteControlador {
     @Autowired // es similar al inject
     public ClienteServicio clienteServicio;
 
     // Para consumir el Guardar Clientes desde Postman o FronEnd
-    @PostMapping("/guardar")
-    public ResponseEntity<Cliente> save(@RequestBody Cliente cliente){
-        Cliente t= clienteServicio.create(cliente);
-
+    @PostMapping("/crear")
+    public ResponseEntity<Object> guardarCliente(@RequestBody Cliente cliente) {
         try {
-            return ResponseEntity.created(new URI("/microservicio/cliente/guardar"+t.getCedula())).body(t);
-        }
-        catch (Exception ex)
-        {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            clienteServicio.create(cliente);
+            return ResponseEntity.status(HttpStatus.OK).body(cliente);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Error error = new Error();
+            return ResponseEntity.status(HttpStatus.OK).body(error);
         }
     }
 
@@ -34,4 +34,10 @@ public class ClienteControlador {
     public ResponseEntity<List<Cliente>> listAll(){
         return ResponseEntity.ok(clienteServicio.listClientes());
     }
+
+
+
+
+
+
 }

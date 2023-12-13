@@ -1,30 +1,25 @@
-package ups.edu.ec.microservice.estudiante.modelo;
+package ups.edu.ec.microservice.curso.dto;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name="Cliente")
-public class Cliente {
-    @Id
-    @Column(name="cli_cedula")
+public class ProfesorDTO {
+
     private String cedula;
-    @Column(name="cli_nombre")
+
     private String nombre;
-    @Column(name="cli_apellido")
+
     private String apellido;
-    @Column(name="cli_correo")
+
     private String correo;
-    @Column(name="cli_contrasena")
+
     private String contrasena;
-    @Column(name="cli_celular")
+
     private String celular;
-    @Column(name="cli_direccion")
+
     private String direccion;
-    private Long idCurso;
-    public Cliente(String cedula, String nombre, String apellido, String correo, String contrasena, String celular, String direccion) {
+
+    public ProfesorDTO(String cedula, String nombre, String apellido, String correo, String contrasena, String celular, String direccion) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -32,21 +27,6 @@ public class Cliente {
         this.contrasena = contrasena;
         this.celular = celular;
         this.direccion = direccion;
-    }
-
-    public Cliente(String cedula, String nombre, String apellido, String correo, String contrasena, String celular, String direccion, Long idCurso) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.contrasena = contrasena;
-        this.celular = celular;
-        this.direccion = direccion;
-        this.idCurso = idCurso;
-    }
-
-    public Cliente() {
-
     }
 
     public String getCedula() {

@@ -1,9 +1,9 @@
-server:
-  port: 8080
-
 eureka:
   client:
     register-with-eureka:false
+
+server:
+  port: 8080
 
 spring:
   application:
@@ -12,12 +12,12 @@ spring:
     gateway:
       discovery:
         locator:
-          enable: true
+          enabled: true
       routes:
-        - id: estudiante
+        - id: cliente
           uri: http://localhost:8090
           predicates:
-            - Path=/microservice/cliente/**
+            - Path=/ms/estudiante/**
         - id: profesores
           uri: http://localhost:8190
           predicates:

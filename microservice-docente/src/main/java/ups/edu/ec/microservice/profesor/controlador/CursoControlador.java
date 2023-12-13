@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/microservice/curso")
+@RequestMapping("/ms/curso")
 public class CursoControlador {
     @Autowired // es similar al inject
     public CursoServicio cursoServicio;
