@@ -35,6 +35,22 @@ public class ClienteControlador {
         return ResponseEntity.ok(clienteServicio.listClientes());
     }
 
+    @PostMapping("/actualizar")
+    public ResponseEntity<Object> actualizarCliente(@RequestBody Cliente cliente) {
+        try {
+            clienteServicio.update(cliente);
+            return ResponseEntity.status(HttpStatus.OK).body(cliente);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Error error = new Error();
+            return ResponseEntity.status(HttpStatus.OK).body(error);
+        }
+    }
+
+    @GetMapping("/buscar/{cedula}")
+    public Cliente save(@PathVariable String cedula){
+        return clienteServicio.read(cedula);
+    }
 
 
 

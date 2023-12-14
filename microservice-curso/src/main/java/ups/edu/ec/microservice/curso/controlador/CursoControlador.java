@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ups.edu.ec.microservice.curso.dto.EstudianteDTO;
 import ups.edu.ec.microservice.curso.dto.ProfesorDTO;
 import ups.edu.ec.microservice.curso.modelo.Curso;
+import ups.edu.ec.microservice.curso.modelo.Profesor;
 import ups.edu.ec.microservice.curso.servicio.CursoServicio;
 
 import java.net.URI;
@@ -21,15 +22,17 @@ public class CursoControlador {
     //Para consumir el guardar
     @PostMapping("/guardar")
     public ResponseEntity<Curso> save(@RequestBody Curso curso){
-        Curso c= cursoServicio.create(curso);
-
         try{
-            return ResponseEntity.created(new URI("/microservice/curso/guardar"+c.getId())).body(c);
+        cursoServicio.create(curso);
+            return ResponseEntity.status(HttpStatus.OK).body(curso);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Error error = new Error();
+
         }
-        catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+        return null;
     }
+
 
     // para consumir el listar
     @GetMapping("/all")

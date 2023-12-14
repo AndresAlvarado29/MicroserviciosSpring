@@ -23,6 +23,7 @@ public class Cliente {
     private String celular;
     @Column(name="cli_direccion")
     private String direccion;
+    @Column(name="cli_idCurso")
     private Long idCurso;
     public Cliente(String cedula, String nombre, String apellido, String correo, String contrasena, String celular, String direccion) {
         this.cedula = cedula;

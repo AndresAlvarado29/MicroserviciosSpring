@@ -22,8 +22,7 @@ public class Profesor {
     private String celular;
     @Column(name="pro_direccion")
     private String direccion;
-    @OneToMany(mappedBy = "profesor")
-    private List<Curso> cursos;
+
 
     public Profesor(String cedula, String nombre, String apellido, String correo, String contrasena, String celular, String direccion) {
         this.cedula = cedula;
